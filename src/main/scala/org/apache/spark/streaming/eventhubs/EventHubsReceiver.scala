@@ -23,8 +23,8 @@ import org.apache.spark.streaming.receiver.Receiver
 import com.microsoft.eventhubs.client.EventHubMessage
 import scala.util.control.ControlThrowable
 
-// import org.apache.spark.util.ThreadUtils // Spark 1.4
-import org.apache.spark.util.Utils  // Spark 1.3
+import org.apache.spark.util.ThreadUtils // Spark 1.4
+//import org.apache.spark.util.Utils  // Spark 1.3
 
 private[eventhubs]
 class EventHubsReceiver(
@@ -75,8 +75,8 @@ class EventHubsReceiver(
 
     stopMessageHandler = false
     val executorPool =
-      // ThreadUtils.newDaemonFixedThreadPool(1, "EventHubsMessageHandler") // 1.4
-      Utils.newDaemonFixedThreadPool(1, "EventHubsMessageHandler") // 1.3
+      ThreadUtils.newDaemonFixedThreadPool(1, "EventHubsMessageHandler") // 1.4
+      //Utils.newDaemonFixedThreadPool(1, "EventHubsMessageHandler") // 1.3
 
     try {
       executorPool.submit(new EventHubsMessageHandler)
